@@ -1,0 +1,16 @@
+{
+  "steps": 6420,
+  "calories": 1950,
+  "sleepHours": 7.6,
+  "water": 7,
+  "mood": 4,
+  "weeklyActivity": [
+    {"name":"Mon","value":45},
+    {"name":"Tue","value":52},
+    {"name":"Wed","value":60},
+    {"name":"Thu","value":40},
+    {"name":"Fri","value":55},
+    {"name":"Sat","value":70},
+    {"name":"Sun","value":48}
+  ]
+}
