@@ -12,6 +12,7 @@ The app auto-falls back to mock mode when no backend URL is provided.
 ## Env Variables (REACT_APP_*)
 
 - REACT_APP_API_BASE or REACT_APP_BACKEND_URL: Backend base URL. If missing, mock mode is enabled.
+  - Empty strings, the literal values `undefined`/`null`, or missing values are treated as not configured.
 - REACT_APP_FRONTEND_URL: Optional public URL of the app.
 - REACT_APP_WS_URL: Optional WebSocket URL.
 - REACT_APP_NODE_ENV: Defaults to `development`.
@@ -27,7 +28,11 @@ Create an `.env.local` and set any of the above as needed.
 
 ## Mock Mode
 
-When `REACT_APP_API_BASE` and `REACT_APP_BACKEND_URL` are not set, an in-app mock server provides demo data with a small artificial delay. Charts render demo data and Coach chat replies with a canned response.
+- A build-time `MOCK_MODE` flag is exported from `src/config/env.js`. If both `REACT_APP_API_BASE` and `REACT_APP_BACKEND_URL` are falsy, `MOCK_MODE` is `true` and all API calls are routed to the in-app mock server.
+- If a backend URL is provided but the runtime healthcheck fails once, the client auto-falls back to mock responses to avoid `TypeError: Failed to fetch`.
+- No calls are made to an undefined or empty base URL.
+
+When in mock mode, an in-app mock server provides demo data with a small artificial delay. Charts render demo data and Coach chat replies with a canned response.
 
 ## Routes
 
